@@ -1,0 +1,189 @@
+//#include<iostream>
+//using namespace std;
+//int main()
+//{
+//	int a = 10;
+//	int& b = a;  //创建引用
+//	cout << "a = " << a << endl;
+//	cout << "b = " << b << endl;
+//	//a = 10
+//	//b = 10
+//	b = 100;
+//	cout << "a = " << a << endl;
+//	cout << "b = " << b << endl;
+//	//a = 100
+//	//b = 100
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	//int& c;  错误！因为没有初始化
+//	int& c = a;   //初始化后不能再更改
+//	c = b;       //赋值
+//	cout << "a = " << a << endl;
+//	cout << "b = " << b << endl;
+//	cout << "c = " << c << endl;
+//	/*
+//	a = 20
+//	b = 20
+//	c = 20
+//	*/
+//}
+
+
+//#include <iostream>
+//using namespace std;
+////值传递
+//void swap1(int a, int b)
+//{
+//	int tmp = a;
+//	a = b;
+//	b = tmp;
+//}
+////地址传递
+//void swap2(int* a, int* b)
+//{
+//	int tmp = *a;
+//	*a = *b;
+//	*b = tmp;
+//}
+////引用传递
+//void swap3(int& a,int& b)
+//{
+//	int tmp = a;
+//	a = b;
+//	b = tmp;
+//}
+//int main()
+//{
+//	int a;
+//	int b;
+//	a = 10;
+//	b = 20;
+//	swap1(a, b);
+//	//值传递 --  形参不修饰实参
+//	cout << "值传递" << endl;
+//	cout << "a = " << a << endl;
+//	cout << "b = " << b << endl;
+//	//地址传递  --  形参修饰实参
+//	a = 10;
+//	b = 20;
+//	swap2(&a, &b);
+//	cout << "地址传递" << endl;
+//	cout << "a = " << a << endl;
+//	cout << "b = " << b << endl;
+//	//引用传递  --  形参修饰实参
+//	a = 10;
+//	b = 20;
+//	swap3(a, b);
+//	cout << "引用传递" << endl;
+//	cout << "a = " << a << endl;
+//	cout << "b = " << b << endl;
+//	return 0;
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//int& test1()
+//{
+//	int a = 10; //定义一个局部变量，放在栈区
+//	return a;
+//}
+//int main()
+//{
+//	int& ref = test1();
+//	cout << "ref = " << ref << endl; //第一次正确，是因为编译器做了保留
+//	cout << "ref = " << ref << endl; //第二次错误，因为a的内存已经释放
+//	/*
+//	ref = 10
+//	ref = 2068748680
+//	*/
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//int& test2()
+//{
+//	static int a = 10; //静态变量，存放在全局区，全局区上的数据在程序结束后由系统释放
+//	return a;
+//}
+//int main()
+//{
+//	int& ref = test2();
+//	cout << "ref = " << ref << endl; 
+//	cout << "ref = " << ref << endl;
+//	cout << "ref = " << ref << endl;
+//	//如果函数的返回值是引用，这个函数调用可以作为左值
+//	test2() = 1000;   //test2()返回a的引用
+//	cout << "ref = " << ref << endl;
+//	cout << "ref = " << ref << endl;
+//	/*
+//	ref = 10
+//	ref = 10
+//	ref = 10
+//	ref = 1000
+//	ref = 1000
+//	*/
+//}
+
+
+//#include<iostream>
+//using namespace std;
+////发现是引用，转换为 int* const ref = &a;
+//void func(int& ref)
+//{
+//	//ref是引用，转换为 * ref = 100;
+//	ref = 100;  
+//}
+//int main()
+//{
+//	int a = 10;
+//
+//	//自动转换为 int* const ref = &a;
+//	int& ref = a;
+//	ref = 20; //内部发现ref是引用，自动转换为 * ref = 20;
+//
+//	cout << "a: " << a << endl;
+//	cout << "ref: " << ref << endl;
+//	/*
+//	a: 20
+//	ref: 20
+//	*/
+//	func(a);
+//
+//	cout << "a: " << a << endl;
+//	cout << "ref: " << ref << endl;
+//	/*
+//	a: 100
+//	ref: 100
+//	*/
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//void showValue(const int& val)
+//{
+//	//val = 111;
+//	cout << "val = " << val << endl;
+//}
+//int main()
+//{
+//	//加上const之后，编译器将代码修改为  int tmp = 10; const int& ref = tmp;
+//	//加上const之后变为只读，不可修改
+//	const int& ref = 10;   //引用必须引一块合法的内存空间
+//	int a = 100;
+//	showValue(a);
+//	cout << "a = " << a << endl;
+//	/*
+//	val = 100
+//	a = 100
+//	*/
+//}

@@ -1,0 +1,81 @@
+//#include <iostream>
+//using namespace std;
+//int func(int a, int b = 50, int c = 40) {
+//	return a + b + c;
+//}
+//int main()
+//{
+//	//如果自己传数据，就用传的数据，否则就用默认值
+//	cout << func(10) << endl; //100
+//	cout << func(10, 20) << endl; //70
+//}
+
+//#include <iostream>
+//using namespace std;
+////占位参数
+//void func(int a, int = 10)
+//{
+//	cout << "this is a func" << endl;
+//}
+//int main()
+//{
+//	func(10);
+//}
+
+//#include <iostream>
+//using namespace std;
+//void func()
+//{
+//	cout << "函数调用" << endl;
+//}
+//void func(int a)
+//{
+//	cout << a << endl;
+//}
+//void func(char a)
+//{
+//	cout << a << endl;
+//}
+//void func(int a, int b)
+//{
+//	cout << a << b << endl;
+//}
+//int main()
+//{
+//	func();       //函数调用
+//	func(20);     //20
+//	func('f');    //f
+//	func(20, 20); //2020
+//}
+
+//#include <iostream>
+//using namespace std;
+//void func(int& a)
+//{
+//	cout << "int& a" << endl;
+//}
+//void func(const int& a)
+//{
+//	cout << "const int& a" << endl;
+//}
+//int main()
+//{
+//	int a = 10;
+//	func(a);    //int& a
+//	func(10);   //const int& a
+//}
+
+//#include <iostream>
+//using namespace std;
+//void func(int a)
+//{
+//	cout << "int a" << endl;
+//}
+//void func(int a, int b = 10)
+//{
+//	cout << "int a, int b" << endl;
+//}
+//int main()
+//{
+//	func(10);    //error
+//}

@@ -1,0 +1,138 @@
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//class Building
+//{
+//	friend void goodFri(Building* building); //goodFri函数可以访问类内私有成员
+//public:
+//	Building()
+//	{
+//		LivingRoom = "客厅";
+//		BedRoom = "卧室";
+//	}
+//public:
+//	string LivingRoom;
+//private:
+//	string BedRoom;
+//};
+////全局函数
+//void goodFri(Building* building)
+//{
+//	cout << "好朋友全局函数正在访问： " << building->LivingRoom << endl;
+//	cout << "好朋友全局函数正在访问： " << building->BedRoom << endl;
+//}
+//void test1()
+//{
+//	Building building;
+//	goodFri(&building);
+//}
+//int main()
+//{
+//	test1();
+//}
+
+
+//#include <iostream>
+//using namespace std;
+//class Building;
+//class GoodFri
+//{
+//public:
+//	//构造函数
+//	GoodFri();
+//public:
+//	void visit();
+//	Building* building;
+//};
+//
+//class Building
+//{
+//	friend class GoodFri;    //GoodFri类可以访问类内私有成员
+//public:
+//	//构造函数
+//	Building();
+//public:
+//	string LivingRoom;
+//private:
+//	string BedRoom;
+//};
+////类外写成员函数
+//Building::Building()
+//{
+//	LivingRoom = "客厅";
+//	BedRoom = "卧室";
+//}
+//GoodFri::GoodFri()
+//{
+//	//创建建筑物对象
+//	building = new Building;
+//}
+//void GoodFri::visit()
+//{
+//	cout << "好朋友正在访问： " << building->LivingRoom << endl;
+//	cout << "好朋友正在访问： " << building->BedRoom << endl;
+//}
+//void test1()
+//{
+//	GoodFri GF;
+//	GF.visit();
+//}
+//int main()
+//{
+//	test1();
+//}
+
+
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//
+//class Building;
+//class GoodFri
+//{
+//public:
+//	GoodFri();
+//	void visit1();  //让visit1函数可以访问到Building中的私有成员
+//	void visit2();  //让visit2函数不可以访问到Building中的私有成员
+//	Building* building;
+//};
+//
+//class Building
+//{
+//	//GoodFri类下的成员函数visit1可以访问类内私有成员
+//	friend void GoodFri::visit1();
+//public:
+//	Building();
+//public:
+//	string LivingRoom;
+//private:
+//	string BedRoom;
+//};
+//Building::Building()
+//{
+//	LivingRoom = "客厅";
+//	BedRoom = "卧室";
+//}
+//GoodFri::GoodFri()
+//{
+//	building = new Building;
+//}
+//void GoodFri::visit1()
+//{
+//	cout << "visit1函数正在访问: " << building->LivingRoom << endl;
+//	cout << "visit1函数正在访问: " << building->BedRoom << endl;
+//}
+//void GoodFri::visit2()
+//{
+//	cout << "visit2函数正在访问: " << building->LivingRoom << endl;
+//	//cout << "visit2函数正在访问: " << building->BedRoom << endl;      err
+//}
+//void test1()
+//{
+//	GoodFri GF;
+//	GF.visit1();
+//}
+//int main()
+//{
+//	test1();
+//}

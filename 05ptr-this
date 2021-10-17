@@ -1,0 +1,139 @@
+//#include <iostream>
+//using namespace std;
+//class Person1
+//{
+//
+//};
+//class Person2
+//{
+//	int A;    //非静态成员变量，属于类对象
+//	static int B;  //静态成员变量，不属于类对象
+//	void func();   //非静态成员函数，不属于类对象
+//	static void func2(); //静态成员函数，不属于类对象
+//};
+//int Person2::B = 99;
+//void test1()
+//{
+//	Person1 p1;
+//	//空对象占用空间为：1
+//	//C++编译器会给每个空对象也分配 一个字节 的空间，目的是 区分空对象占内存的位置
+//	cout << "size of p1 is " << sizeof(p1) << endl;   //1
+//}
+//void test2()
+//{
+//	Person2 p2;
+//	cout << "size of p2 is " << sizeof(p2) << endl;   //4
+//}
+//int main()
+//{
+//	//test1();
+//	test2();
+//}
+
+
+//#include <iostream>
+//using namespace std;
+//class Person
+//{
+//public:
+//	Person(int age)
+//	{
+//		this -> age = age;
+//	}
+//	Person& addAge(Person& p)
+//	{
+//		this->age += p.age;
+//		return *this;
+//	}
+//	int age;
+//};
+//void test1()
+//{
+//	Person p1(18);
+//	cout << "p1的年龄为： " << p1.age << endl;
+//}
+//void test2()
+//{
+//	Person p2(10);
+//	Person p3(10);
+//	p3.addAge(p2).addAge(p2).addAge(p2).addAge(p2);
+//	cout << "p3的年龄为： " << p3.age << endl;
+//}
+//int main()
+//{
+//	//test1();
+//	test2();
+//}
+
+
+//#include <iostream>
+//using namespace std;
+//class Person
+//{
+//public:
+//	void showPersonName()
+//	{
+//		cout << "this is Person class" << endl;
+//	}
+//	void showAge()
+//	{
+//		//加入判断，程序不至于崩溃
+//		if (this == NULL)
+//		{
+//			return;
+//		}
+//		cout << "age = " << Age << endl;
+//	}
+//	int Age = 20;
+//
+//};
+//void test1()
+//{
+//	Person* p = NULL;
+//	p->showPersonName();
+//	p->showAge();  //err    报错原因：传入的指针为NULL
+//}
+//int main()
+//{
+//	test1();
+//}
+
+
+//#include <iostream>
+//using namespace std;
+//class Person
+//{
+//public:
+//	//this指针的本质是一个指针常量，指针的指向不可修改
+//	void showPerson() const
+//	{
+//		//this->A = 100;   //err
+//		this->B = 200;
+//	}
+//	int A;
+//	mutable int B;
+//};
+//void func()
+//{
+//
+//}
+//void test1()
+//{
+//	Person p1;
+//	p1.showPerson();
+//}
+//void test2()
+//{
+//	const Person p2;
+//	//p2.A = 200;     err
+//	p2.B = 100;
+//	//常对象只能调用常函数
+//	p2.showPerson();
+//	//p2.func();    err
+//}
+//int main()
+//{
+//	test1();
+//}
+
+

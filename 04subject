@@ -1,0 +1,356 @@
+//#include<iostream>
+//using namespace std;
+//class Person
+//{
+//public:
+//	//构造函数
+//	Person()
+//	{
+//		cout << "构造函数的调用" << endl;
+//	}
+//	~Person()
+//	{
+//		cout << "析构函数调用" << endl;
+//	}
+//};
+//void test1()
+//{
+//	Person p1;
+//}
+//int main()
+//{
+//	//test1();       //调用构造函数和析构函数
+//	//Person p2;       //调用构造函数，退出主函数调用析构函数
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//class Person
+//{
+//public:
+//	//普通构造函数
+//	Person()
+//	{
+//		cout << "无参（默认）构造函数的调用" << endl;
+//	}
+//	Person(int a)
+//	{
+//		age = a;
+//		cout << "有参构造函数调用" << endl;
+//	}
+//	//拷贝构造函数
+//	Person(const Person &p)
+//	{
+//		//将 传入的人 身上所有的属性传入 另一个人 身上
+//		age = p.age;
+//		cout << "拷贝构造函数调用" << endl;
+//	}
+//	~Person()
+//	{
+//		cout << "析构函数的调用" << endl;
+//	}
+//	int age;
+//};
+//void test1()
+//{
+//	//1、括号法
+//	Person p1;     //默认构造
+//	Person p2(10); //有参构造
+//	Person p3(p2); //拷贝构造
+//	cout << "p2的年龄为：" << p2.age << endl;
+//	cout << "p3的年龄为：" << p3.age << endl;
+//	//显示法
+//	Person p4;   //无参构造
+//	Person p5 = Person(10);  //有参构造
+//	Person p6 = Person(p5);  //拷贝构造
+//	Person(10);  //匿名对象 --  当前行执行完毕，系统自动收回匿名对象
+//	Person(p6);  //重定义
+//
+//	//隐式转换法
+//	Person p7 = 10; //等价于 Person p7 = Person (10);  --  有参构造
+//	Person p8 = p7; //拷贝构造
+//}
+//int main()
+//{
+//	test1();
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//class Person
+//{
+//public:
+//	Person()
+//	{
+//		cout << "无参构造函数" << endl;
+//		mAge = 0;
+//	}
+//	Person(int age)
+//	{
+//		cout << "有参构造函数" << endl;
+//		mAge = age;
+//	}
+//	Person(const Person& p)
+//	{
+//		cout << "拷贝构造函数" << endl;
+//		mAge = p.mAge;
+//	}
+//	~Person()
+//	{
+//		cout << "析构函数" << endl;
+//	}
+//	int mAge;
+//};
+//
+//1、使用一个已经创建完毕的对象来初始化一个新对象
+//void test1()
+//{
+//	Person p1(20);  //有参构造函数
+//	Person p2(p1);  //拷贝构造函数
+//	cout << "p2的年龄为： " << p2.mAge << endl;
+//}
+//
+//2、值传递的方式给参数传值
+//void doWork1(Person p)
+//{
+//}
+//void test2()
+//{
+//	Person p3;  //无参构造函数
+//	doWork1(p3); //拷贝构造函数
+//}
+//
+//3、以值方式返回局部对象
+//Person doWork2()
+//{
+//	Person p4;  //临时的局部变量     //无参构造
+//	return p4;
+//}
+//void test3()
+//{
+//	Person p = doWork2();  //拷贝构造
+//}
+//int main()
+//{
+//	test1();
+//	test2();
+//	test3();
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//class Person
+//{
+//public:
+//	Person()
+//	{
+//		cout << "默认构造函数" << endl;
+//	}
+//	Person(int age)
+//	{
+//		Age = age;
+//		cout << "有参构造函数" << endl;
+//	}
+//	Person(const Person& p)
+//	{
+//		Age = p.Age;
+//		cout << "拷贝构造函数" << endl;
+//	}
+	//~Person()
+	//{
+	//	cout << "析构函数" << endl;
+	//}
+//	int Age;
+//};
+//void test1()
+//{
+//	Person p1;     //默认构造
+//	p1.Age = 20;
+//	Person p2(p1);  //拷贝构造
+//	cout << "p2的年龄为： " << p2.Age << endl;
+//}
+//void test2()
+//{
+//	Person p3(18);   //有参构造
+//	Person p4(p3);  //拷贝构造
+//	cout << "p4的年龄为： " << p4.Age << endl;
+//}
+//int main()
+//{
+//	//test1();
+//	//test2();
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//class Person
+//{
+//public:
+//	Person()
+//	{
+//		cout << "默认构造函数" << endl;
+//	}
+//	Person(int age,int height)
+//	{
+//		Age = age;
+//		Height = new int(height);
+//		cout << "有参构造函数" << endl;
+//	}
+//	//自己实现拷贝构造函数实现深拷贝
+//	Person(const Person &p)
+//	{
+//		cout << "拷贝构造函数" << endl;
+//		Age = p.Age;
+//		//深拷贝
+//		Height = new int(*p.Height);
+//	}
+//	~Person()
+//	{
+//		//析构函数，将堆区开辟的数据做释放操作
+//		if (Height != NULL)
+//		{
+//			delete Height;
+//			Height = NULL;
+//		}
+//		cout << "析构函数" << endl;
+//	}
+//	int Age;
+//	int* Height;
+//};
+//void test1()
+//{
+//	Person p1(18,180);
+//	cout << "p1的年龄为： " << p1.Age << " 身高为： " << *p1.Height << endl;
+//	Person p2(p1);
+//	cout << "p2的年龄为： " << p2.Age << " 身高为： " << *p2.Height << endl;
+//
+//}
+//int main()
+//{
+//	test1();
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//class Person
+//{
+//public:
+//	//传统的初始化操作
+//	/*Person(int a, int b, int c)
+//	{
+//		A = a;
+//		B = b;
+//		C = c;
+//	}*/
+//	//初始化列表初始化属性
+//	Person(int a, int b, int c) : A(a), B(b), C(c)
+//	{
+//
+//	}
+//	int A;
+//	int B;
+//	int C;
+//};
+//void test1()
+//{
+//	Person p1(10, 20, 30);
+//	cout << "A= " << p1.A << endl;
+//	cout << "B= " << p1.B << endl;
+//	cout << "C= " << p1.C << endl;
+//	Person p2(30, 20, 10);
+//	cout << "A= " << p2.A << endl;
+//	cout << "B= " << p2.B << endl;
+//	cout << "C= " << p2.C << endl;
+//
+//}
+//int main()
+//{
+//	test1();
+//}
+
+
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//class Phone
+//{
+//public:
+//	Phone(string PName)
+//	{
+//		cout << "Phone的构造函数" << endl;
+//		_PName = PName;
+//	}
+//	~Phone()
+//	{
+//		cout << "Phone的析构函数" << endl;
+//	}
+//	string _PName;
+//};
+//class Person
+//{
+//public:
+//	//Phone _Phone = _PName;
+//	Person(string name, string pname) : _Name(name), _Phone(pname)
+//	{
+//		cout << "Person的构造函数" << endl;
+//	}
+//	~Person()
+//	{
+//		cout << "Person的析构函数" << endl;
+//	}
+//	string _Name;
+//	Phone _Phone;
+//};
+//void test1()
+//{
+//	Person p1("zhangsan","iphone");
+//	cout << p1._Name << "拿的" << p1._Phone._PName << "手机" << endl;
+//}
+//int main()
+//{
+//	test1();
+//	/*
+//	Phone的构造函数
+//	Person的构造函数
+//	zhangsan拿的iphone手机
+//	Person的析构函数
+//	Phone的析构函数
+//	*/
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//
+//class Person
+//{
+//public:
+//	//静态成员函数
+//	static void func()
+//	{
+//		A = 999;    //静态成员函数 可以访问 静态成员变量
+//		//B = 999;    //err
+//		cout << "静态成员函数调用" << endl;
+//	}
+//	//静态成员变量
+//	static int A;     //类内声明
+//	int B;    //非静态成员变量
+//};
+//int Person::A = 9;    //类外初始化
+//void test1()
+//{
+//	//1、通过对象访问
+//	Person p;
+//	p.func();
+//	//2、通过类名访问
+//	Person::func();
+//}
+//int main()
+//{
+//	test1();
+//}

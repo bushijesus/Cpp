@@ -1,0 +1,530 @@
+//#include <iostream>
+//using namespace std;
+//
+////普通实现界面
+//
+////java
+//class java
+//{
+//public:
+//	void header()
+//	{
+//		cout << "首页、公开课、登录/注册、...(公共头部)" << endl;
+//	}
+//	void footer()
+//	{
+//		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+//	}
+//	void left()
+//	{
+//		cout << "java、python、C++...(公共分类列表)" << endl;
+//	}
+//	void content()
+//	{
+//		cout << "java学科视频" << endl;
+//	}
+//};
+////python
+//class python
+//{
+//public:
+//	void header()
+//	{
+//		cout << "首页、公开课、登录/注册、...(公共头部)" << endl;
+//	}
+//	void footer()
+//	{
+//		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+//	}
+//	void left()
+//	{
+//		cout << "java、python、C++...(公共分类列表)" << endl;
+//	}
+//	void content()
+//	{
+//		cout << "python学科视频" << endl;
+//	}
+//};
+//class cpp
+//{
+//public:
+//	void header()
+//	{
+//		cout << "首页、公开课、登录/注册、...(公共头部)" << endl;
+//	}
+//	void footer()
+//	{
+//		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+//	}
+//	void left()
+//	{
+//		cout << "java、python、C++...(公共分类列表)" << endl;
+//	}
+//	void content()
+//	{
+//		cout << "C++学科视频" << endl;
+//	}
+//};
+//
+////继承实现界面
+//
+////公共界面类
+//class BasePage
+//{
+//public:
+//	void header()
+//	{
+//		cout << "首页、公开课、登录/注册、...(公共头部)" << endl;
+//	}
+//	void footer()
+//	{
+//		cout << "帮助中心、交流合作、站内地图...(公共底部)" << endl;
+//	}
+//	void left()
+//	{
+//		cout << "java、python、C++...(公共分类列表)" << endl;
+//	}
+//};
+////java
+//class Java: public BasePage
+//{
+//public:
+//	void content()
+//	{
+//		cout << "java学科视频" << endl;
+//	}
+//};
+////python
+//class Python: public BasePage
+//{
+//	public:
+//		void content()
+//		{
+//			cout << "python学科视频" << endl;
+//		}
+//};
+////cpp
+//class Cpp : public BasePage
+//{
+//public:
+//	void content()
+//	{
+//		cout << "C++学科视频" << endl;
+//	}
+//};
+//void test1()
+//{
+//	cout << "java视频界面如下：" << endl;
+//	Java jv;
+//	jv.header();
+//	jv.footer();
+//	jv.left();
+//	jv.content();
+//	cout << "------------------------" << endl;
+//}
+//void test2()
+//{
+//	cout << "python视频界面如下：" << endl;
+//	Python py;
+//	py.header();
+//	py.footer();
+//	py.left();
+//	py.content();
+//	cout << "------------------------" << endl;
+//}
+//void test3()
+//{
+//	cout << "C++视频界面如下：" << endl;
+//	Cpp cp;
+//	cp.header();
+//	cp.footer();
+//	cp.left();
+//	cp.content();
+//	cout << "------------------------" << endl;
+//}
+//int main()
+//{
+//	test1();
+//	test2();
+//	test3();
+//}
+
+
+//#include <iostream>
+//using namespace std;
+//
+////继承方式
+//class Base
+//{
+//public:
+//	int A;
+//protected:
+//	int B;
+//private:
+//	int C;
+//};
+//
+////公共继承
+//class Son1 : public Base
+//{
+//public:
+//	void func()
+//	{
+//		A = 10;//父类中的公共权限成员，到了子类依然是公共权限成员
+//		B = 10;//父类中的保护权限成员，到了子类中依然是保护权限成员
+//		//C = 10;//err  父类中的私有权限成员，子类访问不到
+//	}
+//};
+//void test1()
+//{
+//	Son1 s1;
+//	s1.A = 20;
+//	//s1.B = 20;//err  保护权限 类外不能访问
+//}
+//
+////保护继承
+//class Son2 : protected Base
+//{
+//public:
+//	void func()
+//	{
+//		A = 10;//父类中的公共权限成员，到了子类变成保护权限成员
+//		B = 10;//父类中的保护权限成员，到了子类中依然是保护权限成员
+//		//C = 10;//err  父类中的私有权限成员，子类访问不到
+//	}
+//};
+//void test2()
+//{
+//	Son2 s2;
+//	//s2.A = 20;//err  保护权限 类外不能访问
+//	//s2.B = 20;//err  保护权限 类外不能访问
+//}
+//
+////私有继承
+//class Son3 : private Base
+//{
+//public:
+//	void func()
+//	{
+//		A = 10;//父类中的公共权限成员，到了子类变成私有权限成员
+//		B = 10;//父类中的私有权限成员，到了子类变成私有权限成员
+//		//C = 10;//err  父类中的私有权限成员，子类访问不到
+//	}
+//};
+//class Grandson3 : public Son3
+//{
+//public:
+//	void func()
+//	{
+//		//A = 10;//err  到了Son3中，A变成私有成员，类外不可访问
+//		//B = 10;//err  到了Son3中，B变成私有成员，类外不可访问
+//	}
+//};
+//void test3()
+//{
+//	Son3 s3;
+//	//s3.A;//err  私有权限 类外不能访问
+//	//s3.B;//err  私有权限 类外不能访问
+//}
+//int main()
+//{
+//}
+
+
+//#include <iostream>
+//using namespace std;
+//class Base
+//{
+//public:
+//	int A;
+//protected:
+//	int B;
+//private:
+//	int C;
+//};
+//class Son :public Base
+//{
+//public:
+//	int D;
+//};
+////利用开发人员命令提示工具查看对象模型
+////1、跳转至当前工作目录
+////2、cl /d1 reportSingleClassLayout类名 文件名
+//void test1()
+//{
+//	Son son;
+//	//父类中所有非静态成员属性都会被子类继承下去
+//	//父类中私有成员属性，是被编译器隐藏了，因此访问不到，但是确实继承下来了
+//	cout << "sizeof  son = " << sizeof(son) << endl;   //16
+//}
+//int main()
+//{
+//	test1();
+//}
+
+
+//#include <iostream>
+//using namespace std;
+//class Base
+//{
+//public:
+//	Base()
+//	{
+//		cout << "Base的构造函数调用" << endl;
+//	}
+//	~Base()
+//	{
+//		cout << "Base的析构函数调用" << endl;
+//	}
+//};
+//class Son :public Base
+//{
+//public:
+//	Son()
+//	{
+//		cout << "Son的构造函数调用" << endl;
+//	}
+//	~Son()
+//	{
+//		cout << "Son的析构函数调用" << endl;
+//	}
+//
+//};
+//void test1()
+//{
+//	Son s1;
+//}
+//int main()
+//{
+//	test1();
+//	/*
+//	Base的构造函数调用   父
+//	Son的构造函数调用    子
+//	Son的析构函数调用    子
+//	Base的析构函数调用   父
+//	*/
+//}
+
+
+
+//#include <iostream>
+//using namespace std;
+//class Base
+//{
+//public:
+//	Base()
+//	{
+//		A = 100;
+//	}
+//	void func()
+//	{
+//		cout << "Base -> func()" << endl;
+//	}
+//	void func(int a)
+//	{
+//		cout << "Base -> func(int a)" << endl;
+//	}
+//	int A;
+//};
+//class Son :public Base
+//{
+//public:
+//	Son()
+//	{
+//		A = 200;
+//	}
+//	void func()
+//	{
+//		cout << "Son -> func()" << endl;
+//	}
+//	int A;
+//};
+//void test1()
+//{
+//	//通过子类对象访问父类成员，需要加作用域
+//	Base b1;
+//	Son s1;
+//
+//	cout << "b1.A = " << b1.A << endl;   //100
+//	cout << "s1.A = " << s1.A << endl;   //200
+//	cout << "Base下的A = " << s1.Base::A << endl;   //100
+//
+//	b1.func();   //Base -> func()
+//	s1.func();   //Son -> func()
+//	s1.Base::func();  //Base -> func()
+//
+//	//如果子类中出现和父类同名的成员函数，子类的同名成员会隐藏掉所有的父类同名成员函数
+//	//如果想访问到父类的同名函数，需要加作用域
+//	//s1.func(100);  //err  
+//	s1.Base::func(100);
+//}
+//int main()
+//{
+//	test1();
+//}
+
+
+//#include <iostream>
+//using namespace std;
+//class Base
+//{
+//public:
+//	static int A;
+//	static void func()
+//	{
+//		cout << "Base 下的 static void func()" << endl;
+//	}
+//	static void func(int a)
+//	{
+//		cout << "Base 下的 static void func(int a)" << endl;
+//	}
+//};
+//int Base::A = 100;
+//class Son :public Base
+//{
+//public:
+//	static int A;
+//	static void func()
+//	{
+//		cout << "Son 下的 static void func()" << endl;
+//	}
+//};
+//int Son::A = 200;
+////同名静态成员属性
+//void test1()
+//{
+//	Son s1;
+//	//1、通过对象访问
+//	cout << "通过对象访问" << endl;
+//	cout << "Son 下的 A = " << s1.A << endl;
+//	cout << "Base 下的 A = " << s1.Base::A << endl;
+//	//2、通过类名访问
+//	cout << "通过类名访问" << endl;
+//	cout << "Son 下的 A = " << Son::A << endl;
+//	cout << "Base 下的 A = " << Son::Base::A << endl;  //第一个::代表通过类名访问, 第二个::代表访问父类作用域下
+//}
+////同名静态函数
+//void test2()
+//{
+//	//1、通过对象访问
+//	cout << "通过对象访问" << endl;
+//	Son s2;
+//	s2.func();
+//	s2.Base::func();
+//	//2、通过类名访问
+//	cout << "通过类名访问" << endl;
+//	Son::func();
+//	Son::Base::func();  //第一个::代表通过类名访问, 第二个::代表访问父类作用域下
+//
+//	//如果子类中出现和父类同名的成员函数，子类的同名成员会隐藏掉所有的父类同名成员函数
+//	//如果想访问到父类的同名函数，需要加作用域
+//	
+//	//Son::func(100);  //err
+//	Son::Base::func(100);
+//}
+//int main()
+//{
+//	test1();
+//	test2();
+//}
+
+
+//#include <iostream>
+//using namespace std;
+//
+////父类1
+//class Base1
+//{
+//public:
+//	Base1()
+//	{
+//		A = 100;
+//	}
+//	int A;
+//};
+////父类2
+//class Base2
+//{
+//public:
+//	Base2()
+//	{
+//		A = 200;
+//	}
+//	int A;
+//};
+////子类 需要继承Base1和Base2
+//class Son :public Base1, public Base2
+//{
+//public:
+//	Son()
+//	{
+//		C = 300;
+//		D = 400;
+//	}
+//	int C;
+//	int D;
+//};
+//void test1()
+//{
+//	Son s1;
+//	cout << "sizeof(Son) = " << sizeof(Son) << endl;  //16
+//	//当父类出现同名成员，需要加作用域来区分
+//	cout << "Base1 -> A = " << s1.Base1::A << endl;  //100
+//	cout << "Base2 -> A = " << s1.Base2::A << endl;  //200
+//}
+//int main()
+//{
+//	test1();
+//}
+
+
+
+//#include <iostream>
+//using namespace std;
+////动物类
+//class Animal
+//{
+//public:
+//	int Age;
+//};
+////利用虚继承，解决菱形继承的问题  -->  利用关键字 virtual
+//// Animal类称为 虚基类
+////羊类
+//class Sheep :virtual public Animal
+//{
+//
+//};
+////驼类
+//class Camel :virtual public Animal
+//{
+//
+//};
+////羊驼类
+//class Alpaca :public Sheep, public Camel
+//{
+//
+//};
+//void test1()
+//{
+//	Alpaca cnm1;
+//	cnm1.Sheep::Age = 18;
+//	cnm1.Camel::Age = 20;
+//	//cnm.Age = 18;  //err  访问不明确
+//	cout << "cnm.Sheep::Age = " << cnm1.Sheep::Age << endl;  //18（未使用虚继承）
+//	cout << "cnm.Camel::Age = " << cnm1.Camel::Age << endl;  //20
+//}
+//void test2()
+//{
+//	Alpaca cnm2;
+//	cnm2.Sheep::Age = 18;
+//	cnm2.Camel::Age = 20;
+//	cout << "cnm2.Age = " << cnm2.Age << endl;                //20
+//	cout << "cnm2.Sheep::Age = " << cnm2.Sheep::Age << endl;  //20（使用虚继承）
+//	cout << "cnm2.Camel::Age = " << cnm2.Camel::Age << endl;  //20
+//
+//}
+//int main()
+//{
+//	test1();
+//	test2();
+//}

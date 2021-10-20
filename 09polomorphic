@@ -1,0 +1,561 @@
+#include <iostream>
+//using namespace std;
+////动态多态满足条件：
+////1、有继承关系
+////2、子类重写父类的虚函数  （重写不同于函数重载）
+//
+////动态多态使用：
+////父类的 指针 或者 引用 指向子类对象
+//class Animal
+//{
+//public:
+//	virtual void speak()
+//	{
+//		cout << "动物在说话" << endl;
+//	}
+//};
+//class Cat :public Animal
+//{
+//public:
+//	void speak()
+//	{
+//		cout << "猫在说话" << endl;
+//	}
+//};
+//class Dog: public Animal
+//{
+//public:
+//	void speak()
+//	{
+//		cout << "狗在说话" << endl;
+//	}
+//};
+////地址早绑定  在编译阶段确定函数地址
+////如果想执行猫在说话，需要使用动态多态，让地址晚绑定
+//void doSpeak(Animal &animal)    //Animal &animal = cat(dog); 
+//{
+//	animal.speak();
+//}
+//void test1()
+//{
+//	Cat cat;
+//	doSpeak(cat);   //静态多态：动物在说话     动态多态：猫在说话
+//	Dog dog;
+//	doSpeak(dog);   //静态多态：动物在说话     动态多态：狗在说话
+//}
+//int main()
+//{
+//	test1();
+//}
+//
+//
+//#include <iostream>
+//using namespace std;
+//class Animal
+//{
+//public:
+//	virtual void speak()
+//	{
+//		cout << "动物在说话" << endl;
+//	}
+//};
+//class Cat :public Animal
+//{
+//public:
+//	virtual void speak()
+//	{
+//		cout << "猫在说话" << endl;
+//	}
+//};
+//class Dog : public Animal
+//{
+//public:
+//	void speak()
+//	{
+//		cout << "狗在说话" << endl;
+//	}
+//};
+//void doSpeak(Animal& animal)    //Animal &animal = cat(dog); 
+//{
+//	animal.speak();
+//}
+//void test2()
+//{
+//	cout << "sizeof Animal = " << sizeof(Animal) << endl;    //不加virtual 为 1  ，加上virtual 为 4
+//}
+//int main()
+//{
+//	test2();
+//}
+//
+////分别利用普通写法和多态技术实现两个操作数进行运算的计算器
+////普通写法 
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//
+//class Calc
+//{
+//public:
+//	int getResult(string oper)
+//	{
+//		if (oper == "+")
+//		{
+//			return Num1 + Num2;
+//		}
+//		else if (oper == "-")
+//		{
+//			return Num1 - Num2;
+//		}
+//		else if (oper == "*")
+//		{
+//			return Num1 * Num2;
+//		}
+//		else if (oper == "/")
+//		{
+//			return Num1 / Num2;
+//		}
+//	}
+//	int Num1;
+//	int Num2;
+//};
+//void test1()
+//{
+//	Calc cal;
+//	cal.Num1 = 3;
+//	cal.Num2 = 5;
+//	cout << " Num1 " << "+" << " Num2 " << " = " << cal.getResult("+") << endl;  //加
+//	cout << " Num1 " << "-" << " Num2 " << " = " << cal.getResult("-") << endl;  //减
+//	cout << " Num1 " << "*" << " Num2 " << " = " << cal.getResult("*") << endl;  //乘
+//	cout << " Num1 " << "/" << " Num2 " << " = " << cal.getResult("/") << endl;  //除
+//}
+//int main()
+//{
+//	test1();
+//}
+//
+////利用多态
+//#include <iostream>
+//using namespace std;
+//
+////实现计算器类
+//class AbsCalc
+//{
+//public:
+//	virtual int getResult()
+//	{
+//		return 0;
+//	}
+//	int Num1;
+//	int Num2;
+//};
+////加法计算器类
+//class Add :public AbsCalc
+//{
+//public:
+//	int getResult()
+//	{
+//		return Num1 + Num2;
+//	}
+//};
+////减法计算器类
+//class Sub :public AbsCalc
+//{
+//public:
+//	int getResult()
+//	{
+//		return Num1 - Num2;
+//	}
+//};
+////乘法计算器类
+//class Mul :public AbsCalc
+//{
+//public:
+//	int getResult()
+//	{
+//		return Num1 * Num2;
+//	}
+//};
+////除法计算器类
+//class Div :public AbsCalc
+//{
+//public:
+//	int getResult()
+//	{
+//		return Num1 / Num2;
+//	}
+//};
+//void test1()
+//{
+//	//多态使用条件
+//	//父类的 指针或者引用 指向子类对象
+//
+//	//加法
+//	AbsCalc* tmp = new Add;
+//	tmp->Num1 = 3;
+//	tmp->Num2 = 5;
+//	cout <<  tmp -> Num1  << "+" <<  tmp -> Num2  << " = " << tmp->getResult() << endl;
+//	//用完及时销毁
+//	delete tmp;
+//
+//	//减法
+//	tmp = new Sub;
+//	tmp->Num1 = 3;
+//	tmp->Num2 = 5;
+//	cout << tmp -> Num1 << "-" <<  tmp -> Num2  << " = " << tmp->getResult() << endl;
+//	//用完及时销毁
+//	delete tmp;
+//
+//	//乘法
+//	tmp = new Mul;
+//	tmp->Num1 = 3;
+//	tmp->Num2 = 5;
+//	cout <<  tmp -> Num1  << "*" <<  tmp -> Num2  << " = " << tmp->getResult() << endl;
+//	//用完及时销毁
+//	delete tmp;
+//
+//	//除法
+//	tmp = new Div;
+//	tmp->Num1 = 3;
+//	tmp->Num2 = 5;
+//	cout <<  tmp -> Num1  << "/" <<  tmp -> Num2  << " = " << tmp->getResult() << endl;
+//	//用完及时销毁
+//	delete tmp;
+//}
+//int main()
+//{
+//	test1();
+//}
+//
+//
+//#include <iostream>
+//using namespace std;
+//class Base
+//{
+//public:
+//	//纯虚函数
+//	virtual void func() = 0;
+//};
+//class Son :public Base
+//{
+//public:
+//	//重写父类纯虚函数
+//	void func()
+//	{
+//		cout << "func函数调用" << endl;
+//	}
+//};
+//void test()
+//{
+//	//Base base;  //err
+//	//new Base;   //err
+//	Son s;   //不重写纯虚函数会报错
+//	Base* base = new Son;
+//	base->func();
+//}
+//int main()
+//{
+//	test();
+//}
+//
+//
+//#include <iostream>
+//using namespace std;
+//class AbsDrinking
+//{
+//public:
+//	//煮水
+//	virtual void Boil() = 0;
+//	//冲泡
+//	virtual void Brew() = 0;
+//	//倒杯
+//	virtual void Pour() = 0;
+//	//加料
+//	virtual void Add() = 0;
+//	//制作饮品
+//	virtual void makeSomeDrink()
+//	{
+//		Boil();
+//		Brew();
+//		Pour();
+//		Add();
+//	}
+//};
+////冲咖啡
+//class Coffee :public AbsDrinking
+//{
+//	//煮水
+//	virtual void Boil()
+//	{
+//		cout << "煮矿泉水" << endl;
+//	}
+//	//冲泡
+//	virtual void Brew()
+//	{
+//		cout << "冲泡咖啡" << endl;
+//	}
+//	//倒杯
+//	virtual void Pour()
+//	{
+//		cout << "倒入杯中" << endl;
+//	}
+//	//加料
+//	virtual void Add()
+//	{
+//		cout << "加糖和牛奶" << endl;
+//	}
+//};
+////泡茶
+//class Tea :public AbsDrinking
+//{
+//	//煮水
+//	virtual void Boil()
+//	{
+//		cout << "煮矿泉水" << endl;
+//	}
+//	//冲泡
+//	virtual void Brew()
+//	{
+//		cout << "冲泡茶叶" << endl;
+//	}
+//	//倒杯
+//	virtual void Pour()
+//	{
+//		cout << "倒入杯中" << endl;
+//	}
+//	//加料
+//	virtual void Add()
+//	{
+//		cout << "加柠檬" << endl;
+//	}
+//};
+//void doWork(AbsDrinking* abs)
+//{
+//	abs->makeSomeDrink();
+//	delete abs;
+//}
+//void test()
+//{
+//	doWork(new Coffee);
+//	cout << "------------------" << endl;
+//	doWork(new Tea);
+//
+//}
+//int main()
+//{
+//	test();
+//}
+//
+//
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//class Animal
+//{
+//public:
+//	Animal()
+//	{
+//		cout << "Animal构造函数调用" << endl;
+//	}
+//	//纯虚函数
+//	virtual void speak() = 0;
+//	////虚析构
+//	//virtual ~Animal()
+//	//{
+//	//	cout << "Animal析构函数调用" << endl;
+//	//}
+//	
+//	//纯虚析构
+//	virtual ~Animal() = 0;
+//};
+////纯虚析构的实现
+//Animal::Animal()
+//{
+//	cout << "Animal析构函数调用" << endl;
+//}
+//class Cat :public Animal
+//{
+//public:
+//	Cat(string name)
+//	{
+//		cout << "Cat构造函数调用" << endl;
+//		Name = new string(name);
+//	}
+//	//重写
+//	void speak()
+//	{
+//		cout << *Name <<"猫在说话" << endl;
+//	}
+//	~Cat()
+//	{
+//		if (Name != NULL)
+//		{
+//			cout << "Cat析构函数调用" << endl;
+//			delete Name;
+//			Name = NULL;
+//		}
+//	}
+//	string* Name;
+//};
+//void test()
+//{
+//	Animal* animal = new Cat("Tom");
+//	animal->speak();
+//	//父类指针在析构时，不会调用子类析构，导致如果子类中有堆区属性，会出现内存泄漏
+//	//解决方法：将父类 析构函数 改为 虚析构或者纯虚析构
+//	//纯虚析构 需要声明 也需要具体实现
+//	delete animal;
+//}
+//int main()
+//{
+//	test();
+//}
+//
+//
+//#include <iostream>
+//using namespace std;
+////抽象CPU类
+//class CPU
+//{
+//public:
+//	//抽象的计算函数
+//	virtual void calculate() = 0;
+//};
+////抽象显卡类
+//class GraphicsCard
+//{
+//public:
+//	//抽象的计算函数
+//	virtual void display() = 0;
+//};
+////抽象内存条类
+//class MemoryBank
+//{
+//public:
+//	//抽象的计算函数
+//	virtual void storage() = 0;
+//};
+//class Computer
+//{
+//public:
+//	//构造函数
+//	Computer(CPU* cpu, GraphicsCard* gc, MemoryBank* mb)
+//	{
+//		_cpu = cpu;
+//		_gc = gc;
+//		_mb = mb;
+//	}
+//	//工作函数
+//	void work()
+//	{
+//		_cpu->calculate();
+//		_gc->display();
+//		_mb->storage();
+//	}
+//	~Computer()
+//	{
+//		//释放CPU
+//		if (_cpu != NULL)
+//		{
+//			delete _cpu;
+//			_cpu = NULL;
+//		}
+//		//释放显卡
+//		if (_gc != NULL)
+//		{
+//			delete _gc;
+//			_gc = NULL;
+//		}
+//		//释放内存条
+//		if (_mb != NULL)
+//		{
+//			delete _mb;
+//			_mb = NULL;
+//		}
+//	}
+//private:
+//	CPU* _cpu;          //CPU零件指针
+//	GraphicsCard* _gc;  //显卡零件指针
+//	MemoryBank* _mb;    //内存条零件指针
+//};
+//
+////具体厂商
+////Inter
+//class InterCPU :public CPU
+//{
+//public:
+//	virtual void calculate()
+//	{
+//		cout << "Inter的CPU开始计算" << endl;
+//	}
+//};
+//class InterGraphicsCard :public GraphicsCard
+//{
+//public:
+//	virtual void display()
+//	{
+//		cout << "Inter的显卡开始显示" << endl;
+//	}
+//};
+//class InterMemoryBank :public MemoryBank
+//{
+//public:
+//	virtual void storage()
+//	{
+//		cout << "Inter的内存条开始存储" << endl;
+//	}
+//};
+//
+////Lenovo
+//class LenovoCPU :public CPU
+//{
+//public:
+//	virtual void calculate()
+//	{
+//		cout << "Lenovo的CPU开始计算" << endl;
+//	}
+//};
+//class LenovoGraphicsCard :public GraphicsCard
+//{
+//public:
+//	virtual void display()
+//	{
+//		cout << "Lenovo的显卡开始显示" << endl;
+//	}
+//};
+//class LenovoMemoryBank :public MemoryBank
+//{
+//public:
+//	virtual void storage()
+//	{
+//		cout << "Lenovo的内存条开始存储" << endl;
+//	}
+//};
+//void test()
+//{
+//	//第一台电脑零件
+//	CPU* interCPU = new InterCPU;
+//	GraphicsCard* interGraphicsCard = new InterGraphicsCard;
+//	MemoryBank* interMemoryBank = new InterMemoryBank;
+//	//创建第一台电脑
+//	cout << "第一台电脑开始工作" << endl;
+//	Computer* computer1 = new Computer(interCPU, interGraphicsCard, interMemoryBank);
+//	computer1->work();
+//	delete computer1;
+//	cout << "-------------------" << endl;
+//	//创建第二台电脑
+//	cout << "第二台电脑开始工作" << endl;
+//	Computer* computer2 = new Computer(new LenovoCPU, new LenovoGraphicsCard, new LenovoMemoryBank);
+//	computer2->work();
+//	delete computer2;
+//	cout << "-------------------" << endl;
+//	//创建第三台电脑
+//	cout << "第三台电脑开始工作" << endl;
+//	Computer* computer3 = new Computer(new LenovoCPU, new InterGraphicsCard, new LenovoMemoryBank);
+//	computer3->work();
+//	delete computer3;
+//}
+//int main()
+//{
+//	test();
+//}

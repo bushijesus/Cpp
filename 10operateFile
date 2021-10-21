@@ -1,0 +1,126 @@
+//#include <iostream>
+//#include <fstream>
+//using namespace std;
+////文本文件  写文件
+//void test1()
+//{
+//	ofstream ofs;
+//	ofs.open("test1.txt",ios::out);
+//	ofs << "姓名：张三" << endl;
+//	ofs << "年龄：44" << endl;
+//	ofs << "身高：167" << endl;
+//	ofs.close();
+//}
+//int main()
+//{
+//	test1();
+//}
+
+//#include <iostream>
+//#include <fstream>
+//#include <string>
+//using namespace std;
+//void test2()
+//{
+//	ifstream ifs;
+//	ifs.open("test1.txt",ios::in);
+//	if (!ifs.is_open())
+//	{
+//		cout << "文件打开失败" << endl;
+//		return;
+//	}
+//
+//	//读数据
+//	
+//	//第一种
+//	char buf[1024] = { 0 };
+//	while (ifs >> buf)
+//	{
+//		cout << buf << endl;
+//	}
+//
+//	//第二种
+//	char buf[1024] = { 0 };
+//	while (ifs.getline(buf, sizeof(buf)))
+//	{
+//		cout << buf << endl;
+//	}
+//
+//	//第三种
+//	string buf;
+//	while (getline(ifs, buf))
+//	{
+//		cout << buf << endl;
+//	}
+//
+//	//第四种  --  不推荐
+//	char c;
+//	while ((c = ifs.get()) != EOF)
+//	{
+//		cout << c << endl;
+//	}
+//
+//	ifs.close();
+//}
+//int main()
+//{
+//	test2();
+//}
+
+
+//#include <iostream>
+//#include <fstream>
+//using namespace std;
+//
+////二进制文件  写文件
+//class Person
+//{
+//public:
+//	char Name[64];
+//	int Age;
+//};
+//void test3()
+//{
+//	ofstream ofs;
+//	ofs.open("person.txt", ios::out | ios::binary);
+//	Person ps = { "李四", 56 };
+//	ofs.write((const char*)&ps, sizeof(Person));
+//	ofs.close();
+//}
+//int main()
+//{
+//	test3();
+//}
+
+
+
+//#include <iostream>
+//#include <fstream>
+//using namespace std;
+//class Person
+//{
+//public:
+//	char Name[64];
+//	int Age;
+//};
+//void test4()
+//{
+//	ifstream ifs;
+//	ifs.open("person.txt", ios::in | ios::binary);
+//	if (!(ifs.is_open()))
+//	{
+//		cout << "二进制文件打开失败" << endl;
+//		return;
+//	}
+//	Person ps;
+//	ifs.read((char*)&ps, sizeof(Person));
+//	cout << ps.Name << "  " << ps.Age << endl;
+//	ifs.close();
+//}
+//int main()
+//{
+//	test4();
+//}
+
+
+
